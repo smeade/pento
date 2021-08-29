@@ -7,5 +7,7 @@
     phx-click="lv:clear-flash"
     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
+  <h4><%= DateTime.utc_now |> to_string %></h4>
+
   <%= @inner_content %>
 </main>

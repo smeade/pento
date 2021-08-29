@@ -20,11 +20,24 @@ defmodule PentoWeb.Router do
   scope "/", PentoWeb do
     pipe_through :browser
 
+    # the route definition determines if and how the
+    # live_action assignment is populated.
+    # @live_action will be :index, :new, or :edit
+
+    # STEP_1:
+    # The entry point of the LiveView lifecycle is the route.
+    # The route matches a URL onto a LiveView module (ProductLive.Index)
+    # and sets a live action (:inde)
     live "/products", ProductLive.Index, :index
     live "/products/new", ProductLive.Index, :new
     live "/products/:id/edit", ProductLive.Index, :edit
 
+    # TRACE_2: Routes.product_show_path(@socket, :show, product)
+    #          live macro sets socket.assigns.live_action to :show
     live "/products/:id", ProductLive.Show, :show
+
+    # TRACE_7: Routes.product_show_path(@socket, :edit, @product)
+    #          live macro sets socket.assigns.live_action to :edit
     live "/products/:id/show/edit", ProductLive.Show, :edit
 
     get "/", PageController, :index

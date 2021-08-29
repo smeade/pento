@@ -15,9 +15,13 @@ defmodule PentoWeb.LiveHelpers do
         product: @product,
         return_to: Routes.product_index_path(@socket, :index) %>
   """
+  # TRACE_10: LiveHelper method to render modals
   def live_modal(component, opts) do
+    # TRACE_11: component == "PentoWeb.ProductLive.FormComponent"
     path = Keyword.fetch!(opts, :return_to)
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
+    # TRACE_12: calls live_component with component == "PentoWeb.ModalComponent"
+    #           and modal_opts passed through
     live_component(PentoWeb.ModalComponent, modal_opts)
   end
 end

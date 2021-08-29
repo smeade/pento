@@ -51,6 +51,8 @@ defmodule PentoWeb do
     end
   end
 
+  # TRACE_13: implement Phoenix.LiveComponent behaviour
+  # see https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html
   def live_component do
     quote do
       use Phoenix.LiveComponent
