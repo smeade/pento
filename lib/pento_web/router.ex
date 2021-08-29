@@ -40,6 +40,13 @@ defmodule PentoWeb.Router do
     #          live macro sets socket.assigns.live_action to :edit
     live "/products/:id/show/edit", ProductLive.Show, :edit
 
+    live "/faqs", FaqLive.Index, :index
+    live "/faqs/new", FaqLive.Index, :new
+    live "/faqs/:id/edit", FaqLive.Index, :edit
+
+    live "/faqs/:id", FaqLive.Show, :show
+    live "/faqs/:id/show/edit", FaqLive.Show, :edit
+
     get "/", PageController, :index
   end
 
