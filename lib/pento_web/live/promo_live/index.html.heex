@@ -1,0 +1,21 @@
+<div>
+  <.form
+    let={f}
+    for={@changeset}
+    id="promo-form"
+    phx-change="validate"
+    phx-submit="save">
+
+  <%= label f, :first_name %>
+  <%= text_input f, :first_name, phx_debounce: "blur"  %>
+  <%= error_tag f, :first_name %>
+
+  <%= label f, :email %>
+  <%= text_input f, :email, phx_debounce: "blur" %>
+  <%= error_tag f, :email %>
+
+  <div>
+    <%= submit "Send Promo", phx_disable_with: "Sending..." %>
+  </div>
+  </.form>
+</div>
