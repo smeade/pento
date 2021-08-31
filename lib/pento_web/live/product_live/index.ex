@@ -51,22 +51,26 @@ defmodule PentoWeb.ProductLive.Index do
   # -> followed by the render/1 function.
   @impl true
   def handle_params(params, _url, socket) do
+    IO.inspect("TRACE: PentoWeb.ProductLive.Index#handle_params(params, _url, socket)")
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
+    IO.inspect("TRACE: PentoWeb.ProductLive.Index#apply_action(socket, :edit, %{id => id})")
     socket
     |> assign(:page_title, "Edit Product")
     |> assign(:product, Catalog.get_product!(id))
   end
 
   defp apply_action(socket, :new, _params) do
+    IO.inspect("TRACE: PentoWeb.ProductLive.Index#apply_action(socket, :new, %{id => id})")
     socket
     |> assign(:page_title, "New Product")
     |> assign(:product, %Product{})
   end
 
   defp apply_action(socket, :index, _params) do
+    IO.inspect("TRACE: PentoWeb.ProductLive.Index#apply_action(socket, :index, %{id => id})")
     socket
     |> assign(:page_title, "Listing Products")
     |> assign(:product, nil)

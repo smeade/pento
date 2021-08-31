@@ -11,8 +11,18 @@ defmodule PentoWeb.ModalComponent do
   # TRACE_14: mount the live_modal component
 
   # The default mount/1 function just passes the socket through, unchanged.
+  def mount(socket) do
+    IO.inspect("TRACE_14: PentoWeb.ModalComponent#mount(socket)")
+    {:ok, socket}
+  end
 
   # TRACE_15: run default update/2 function
+  def update(assigns, socket) do
+    IO.inspect("TRACE_15: PentoWeb.ModalComponent#update(assigns, socket)")
+    {:ok,
+     socket
+     |> assign(assigns)}
+  end
 
   # The default update/2 function merely takes the assigns we call live_component/3
   # with and passes them to the socket.
@@ -38,6 +48,7 @@ defmodule PentoWeb.ModalComponent do
   #                                         and @opts passed through
   @impl true
   def render(assigns) do
+    IO.inspect("TRACE_16: PentoWeb.ModalComponent#render(assigns)")
     ~H"""
     <div
       id={@id}
@@ -58,6 +69,7 @@ defmodule PentoWeb.ModalComponent do
 
   @impl true
   def handle_event("close", _, socket) do
+    IO.inspect("TRACE_XX: PentoWeb.ModalComponent#handle_event('close', _, socket)")
     {:noreply, push_patch(socket, to: socket.assigns.return_to)}
   end
 end

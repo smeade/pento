@@ -28,6 +28,7 @@
     <%= for product <- @products do %>
       <tr id={"product-#{product.id}"}>
         <td>
+          <span style="font-size: 50%;">TRACE_1</span>
           <%= live_redirect product.name, to: Routes.product_show_path(@socket, :show, product) %>
         </td>
         <td><%= product.description %></td>

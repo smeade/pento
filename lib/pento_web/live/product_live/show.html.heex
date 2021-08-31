@@ -1,8 +1,5 @@
+<span style="font-size: 50%;">TRACE_5</span>
 <h1>Show Product</h1>
-
-<h4>It's <%= time() %></h4>
-
-<h3><%= @message %></h3>
 
 <!-- TRACE_6: on :show, @live_action != :edit    -->
 <!--          so live_modal is not rendered      -->
@@ -10,13 +7,16 @@
 <!-- TRACE_9: now that @live_action == :edit     -->
 <!--          the live_modal component is called -->
 <!--          to render the product edit form    -->
-<%= if @live_action in [:edit] do %>
+<%= if @live_action in [:edit, :editx] do %>
+  <span style="font-size: 50%;">TRACE_9</span>
   <%= live_modal PentoWeb.ProductLive.FormComponent,
     id: @product.id,
     title: @page_title,
     action: @live_action,
     product: @product,
     return_to: Routes.product_show_path(@socket, :show, @product) %>
+<% else %>
+  <span style="font-size: 50%;">TRACE_6</span>
 <% end %>
 
 <ul>
@@ -45,5 +45,16 @@
 
 <!-- TRACE_6: ProductLive.Show template renders the Product Edit form when @live_action == :edit -->
 <!--          So this link sets live_action :edit. -->
-<span><%= live_patch "Edit", to: Routes.product_show_path(@socket, :edit, @product), class: "button" %></span> |
+<span style="font-size: 50%">&lt;a class="button" data-phx-link="patch" data-phx-link-state="push" href="/products/id/show/edit"&gt;Edit&lt;/a&gt;</span>
+<br/>
+<span style="font-size: 50%">route: live "/products/:id/show/edit", ProductLive.Show, :editx</span>
+<br/>
+<%= Routes.product_show_path(@socket, :edit, @product) %>
+<br/>
+<span><%= live_patch "Edit (product_show_path)", to: Routes.product_show_path(@socket, :edit, @product), class: "button" %></span> |
+<br/>
+<span><%= live_patch "Edit (/products/#{@product.id}/show/edit)", to: "/products/#{@product.id}/show/edit", class: "button" %></span> |
+<br/>
+<span><%= live_patch "Edit (/products/#{@product.id}/show/editing)", to: "/products/#{@product.id}/show/editing", class: "button" %></span> |
+<br/>
 <span><%= live_redirect "Back", to: Routes.product_index_path(@socket, :index) %></span>

@@ -54,6 +54,7 @@ defmodule PentoWeb do
   # TRACE_13: implement Phoenix.LiveComponent behaviour
   # see https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html
   def live_component do
+    IO.inspect("TRACE_13: PentoWeb#live_component")
     quote do
       use Phoenix.LiveComponent
 

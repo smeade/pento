@@ -17,11 +17,13 @@ defmodule PentoWeb.LiveHelpers do
   """
   # TRACE_10: LiveHelper method to render modals
   def live_modal(component, opts) do
-    # TRACE_11: component == "PentoWeb.ProductLive.FormComponent"
+    IO.inspect("TRACE_10: PentoWeb.LiveHelpers#live_modal(component, opts)")
+    # IO.inspect("TRACE_11: PentoWeb.LiveHelpers#live_modal(component, opts)")
     path = Keyword.fetch!(opts, :return_to)
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
     # TRACE_12: calls live_component with component == "PentoWeb.ModalComponent"
     #           and modal_opts passed through
+    # IO.inspect("TRACE_12: PentoWeb.LiveHelpers#live_modal(component, opts)")
     live_component(PentoWeb.ModalComponent, modal_opts)
   end
 end

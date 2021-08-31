@@ -39,6 +39,7 @@ defmodule PentoWeb.Router do
     # TRACE_7: Routes.product_show_path(@socket, :edit, @product)
     #          live macro sets socket.assigns.live_action to :edit
     live "/products/:id/show/edit", ProductLive.Show, :edit
+    live "/products/:id/show/editing", ProductLive.Show, :edit
 
     live "/promos", PromoLive.Index, :index
 
